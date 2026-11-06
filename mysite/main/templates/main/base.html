@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Филармония{% endblock %} | Городская филармония</title>
+    <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="{% url 'main:home' %}" class="logo">Городская филармония</a>
+            <ul class="nav-links">
+                <li>
+                    <a href="{% url 'main:home' %}"
+                       class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">Главная</a>
+                </li>
+                <li class="dropdown">
+                    <a href="{% url 'main:about' %}"
+                       class="{% if request.resolver_match.url_name in 'about,contacts,location' %}active{% endif %}">О филармонии ▾</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'main:contacts' %}">Контакты</a></li>
+                        <li><a href="{% url 'main:location' %}">Как нас найти</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="{% url 'main:afisha' %}"
+                       class="{% if request.resolver_match.url_name == 'afisha' %}active{% endif %}">Афиша</a>
+                </li>
+                <li>
+                    <a href="{% url 'main:collectives' %}"
+                       class="{% if request.resolver_match.url_name == 'collectives' %}active{% endif %}">Коллективы</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>© 2026 Городская филармония. Все права защищены.</p>
+    </footer>
+</body>
+</html>

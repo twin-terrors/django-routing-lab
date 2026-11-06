@@ -1,0 +1,26 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Контакты{% endblock %}
+
+{% block content %}
+<p class="breadcrumbs"><a href="{% url 'main:about' %}">О филармонии</a> / Контакты</p>
+<h1>Контакты</h1>
+
+<div class="cards">
+    <div class="card">
+        <h3>Касса</h3>
+        <p>+7 (495) 000-00-00</p>
+        <p>Ежедневно 11:00–20:00</p>
+    </div>
+    <div class="card">
+        <h3>Администрация</h3>
+        <p>+7 (495) 000-00-01</p>
+        <p>info@philharmonia.example</p>
+    </div>
+    <div class="card">
+        <h3>Коллективные заявки</h3>
+        <p>Для школ и организаций</p>
+        <p>group@philharmonia.example</p>
+    </div>
+</div>
+{% endblock %}

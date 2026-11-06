@@ -1,0 +1,16 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Как нас найти{% endblock %}
+
+{% block content %}
+<p class="breadcrumbs"><a href="{% url 'main:about' %}">О филармонии</a> / Как нас найти</p>
+<h1>Как нас найти</h1>
+<p><b>Адрес:</b> г. Москва, ул. Примерная, д. 1</p>
+<p><b>Метро:</b> 5 минут пешком от станции</p>
+<p><b>Парковка:</b> бесплатная для зрителей за 1 час до начала концерта</p>
+
+<div class="map">
+    <iframe src="https://yandex.ru/map-widget/v1/?ll=37.617635,55.755814&z=15"
+            width="100%" height="400" frameborder="0"></iframe>
+</div>
+{% endblock %}

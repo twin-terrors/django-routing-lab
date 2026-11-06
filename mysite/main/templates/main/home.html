@@ -1,0 +1,26 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <h1>Городская филармония</h1>
+    <p>Симфоническая, камерная и хоровая музыка в исполнении лучших коллективов города. Ждём вас на концертах!</p>
+    <a href="{% url 'main:afisha' %}" class="btn">Смотреть афишу</a>
+</section>
+
+<div class="cards">
+    <div class="card">
+        <h3>80 лет</h3>
+        <p>истории филармонии</p>
+    </div>
+    <div class="card">
+        <h3>200+</h3>
+        <p>концертов в сезон</p>
+    </div>
+    <div class="card">
+        <h3>5</h3>
+        <p>творческих коллективов</p>
+    </div>
+</div>
+{% endblock %}
