@@ -1,0 +1,47 @@
+{% extends 'main/base.html' %}
+
+{% block title %}{{ collective.name }}{% endblock %}
+
+{% block content %}
+<article class="hero">
+    <h1>{{ collective.name }}</h1>
+
+    {% if collective.photo %}
+        <img
+            src="{{ collective.photo.url }}"
+            alt="{{ collective.name }}"
+            class="record-photo"
+        >
+    {% endif %}
+
+    {{ collective.description|linebreaks }}
+
+    <h2>Артисты коллектива</h2>
+
+    <ul class="list">
+        {% for artist in collective.artists.all %}
+            <li>
+                <a href="{% url 'main:artist_detail' artist.pk %}">
+                    {{ artist.name }}
+                </a>
+            </li>
+        {% empty %}
+            <li>Артисты пока не добавлены.</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'main:collective_list' %}" class="btn btn-outline">
+        Вернуться к коллективам
+    </a>
+
+    <a
+        href="{% url 'main:collective_update' collective.pk %}"
+        class="btn"
+    >Изменить</a>
+
+    <a
+        href="{% url 'main:collective_delete' collective.pk %}"
+        class="btn btn-danger"
+    >Удалить</a>
+</article>
+{% endblock %}

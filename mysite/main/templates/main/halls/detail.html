@@ -1,0 +1,36 @@
+{% extends 'main/base.html' %}
+
+{% block title %}{{ hall.name }}{% endblock %}
+
+{% block content %}
+<article class="hero">
+    <h1>{{ hall.name }}</h1>
+
+    <p><strong>Количество мест:</strong> {{ hall.capacity }}</p>
+    {{ hall.description|linebreaks }}
+
+    <h2>Концерты в этом зале</h2>
+
+    <ul class="list">
+        {% for concert in hall.concerts.all %}
+            <li>
+                <a href="{% url 'main:concert_detail' concert.pk %}">
+                    {{ concert.name }}
+                </a>
+                — {{ concert.date|date:"d.m.Y H:i" }}
+            </li>
+        {% empty %}
+            <li>Концерты пока не добавлены.</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'main:hall_list' %}"
+       class="btn btn-outline">Вернуться к залам</a>
+
+    <a href="{% url 'main:hall_update' hall.pk %}"
+       class="btn">Изменить</a>
+
+    <a href="{% url 'main:hall_delete' hall.pk %}"
+       class="btn btn-danger">Удалить</a>
+</article>
+{% endblock %}

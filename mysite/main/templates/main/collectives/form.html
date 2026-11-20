@@ -1,0 +1,24 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+    {% if object %}Изменить коллектив{% else %}Добавить коллектив{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <h1>
+        {% if object %}Изменить коллектив{% else %}Добавить коллектив{% endif %}
+    </h1>
+
+    <form method="post" enctype="multipart/form-data" class="record-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit" class="btn">Сохранить</button>
+
+        <a href="{% url 'main:collective_list' %}" class="btn btn-outline">
+            Отмена
+        </a>
+    </form>
+</div>
+{% endblock %}

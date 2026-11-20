@@ -1,0 +1,40 @@
+{% extends 'main/base.html' %}
+
+{% block title %}{{ artist.name }}{% endblock %}
+
+{% block content %}
+<article class="hero">
+    <h1>{{ artist.name }}</h1>
+
+    {% if artist.photo %}
+        <img
+            src="{{ artist.photo.url }}"
+            alt="{{ artist.name }}"
+            class="record-photo"
+        >
+    {% endif %}
+
+    {{ artist.biography|linebreaks }}
+
+    <p>
+        <strong>Коллектив:</strong>
+        <a href="{% url 'main:collective_detail' artist.collective.pk %}">
+            {{ artist.collective }}
+        </a>
+    </p>
+
+    <a href="{% url 'main:artist_list' %}" class="btn btn-outline">
+        Вернуться к артистам
+    </a>
+
+    <a
+        href="{% url 'main:artist_update' artist.pk %}"
+        class="btn"
+    >Изменить</a>
+
+    <a
+        href="{% url 'main:artist_delete' artist.pk %}"
+        class="btn btn-danger"
+    >Удалить</a>
+</article>
+{% endblock %}

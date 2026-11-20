@@ -1,0 +1,23 @@
+{% extends 'main/base.html' %}
+
+{% block title %}{{ work.name }}{% endblock %}
+
+{% block content %}
+<article class="hero">
+    <h1>{{ work.name }}</h1>
+
+    <p><strong>Композитор:</strong> {{ work.composer }}</p>
+    <p><strong>Длительность:</strong> {{ work.duration }} мин.</p>
+
+    {{ work.description|linebreaks }}
+
+    <a href="{% url 'main:work_list' %}"
+       class="btn btn-outline">Вернуться к произведениям</a>
+
+    <a href="{% url 'main:work_update' work.pk %}"
+       class="btn">Изменить</a>
+
+    <a href="{% url 'main:work_delete' work.pk %}"
+       class="btn btn-danger">Удалить</a>
+</article>
+{% endblock %}

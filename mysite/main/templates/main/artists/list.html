@@ -1,0 +1,45 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Артисты{% endblock %}
+
+{% block content %}
+<h1>Артисты филармонии</h1>
+
+<a href="{% url 'main:artist_create' %}" class="btn">
+    Добавить артиста
+</a>
+
+<div class="cards">
+    {% for artist in artists %}
+        <article class="card">
+            {% if artist.photo %}
+                <img
+                    src="{{ artist.photo.url }}"
+                    alt="{{ artist.name }}"
+                    class="record-photo"
+                >
+            {% endif %}
+
+            <h2>{{ artist.name }}</h2>
+            <p>Коллектив: {{ artist.collective }}</p>
+
+            <a
+                href="{% url 'main:artist_detail' artist.pk %}"
+                class="btn"
+            >Подробнее</a>
+
+            <a
+                href="{% url 'main:artist_update' artist.pk %}"
+                class="btn btn-outline"
+            >Изменить</a>
+
+            <a
+                href="{% url 'main:artist_delete' artist.pk %}"
+                class="btn btn-danger"
+            >Удалить</a>
+        </article>
+    {% empty %}
+        <p>Артистов пока нет.</p>
+    {% endfor %}
+</div>
+{% endblock %}

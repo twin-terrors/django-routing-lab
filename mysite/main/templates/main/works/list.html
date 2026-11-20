@@ -1,0 +1,32 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Произведения{% endblock %}
+
+{% block content %}
+<h1>Музыкальные произведения</h1>
+
+<a href="{% url 'main:work_create' %}" class="btn">
+    Добавить произведение
+</a>
+
+<div class="cards">
+    {% for work in works %}
+        <article class="card">
+            <h2>{{ work.name }}</h2>
+            <p>Композитор: {{ work.composer }}</p>
+            <p>Длительность: {{ work.duration }} мин.</p>
+
+            <a href="{% url 'main:work_detail' work.pk %}"
+               class="btn">Подробнее</a>
+
+            <a href="{% url 'main:work_update' work.pk %}"
+               class="btn btn-outline">Изменить</a>
+
+            <a href="{% url 'main:work_delete' work.pk %}"
+               class="btn btn-danger">Удалить</a>
+        </article>
+    {% empty %}
+        <p>Произведения пока не добавлены.</p>
+    {% endfor %}
+</div>
+{% endblock %}

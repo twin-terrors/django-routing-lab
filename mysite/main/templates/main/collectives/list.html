@@ -1,0 +1,45 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Коллективы{% endblock %}
+
+{% block content %}
+<h1>Коллективы филармонии</h1>
+
+<a href="{% url 'main:collective_create' %}" class="btn">
+    Добавить коллектив
+</a>
+
+<div class="cards">
+    {% for collective in collectives %}
+        <article class="card">
+            {% if collective.photo %}
+                <img
+                    src="{{ collective.photo.url }}"
+                    alt="{{ collective.name }}"
+                    class="record-photo"
+                >
+            {% endif %}
+
+            <h2>{{ collective.name }}</h2>
+            <p>{{ collective.description|truncatewords:25 }}</p>
+
+            <a
+                href="{% url 'main:collective_detail' collective.pk %}"
+                class="btn"
+            >Подробнее</a>
+
+            <a
+                href="{% url 'main:collective_update' collective.pk %}"
+                class="btn btn-outline"
+            >Изменить</a>
+
+            <a
+                href="{% url 'main:collective_delete' collective.pk %}"
+                class="btn btn-danger"
+            >Удалить</a>
+        </article>
+    {% empty %}
+        <p>Коллективов пока нет. Добавьте первый коллектив.</p>
+    {% endfor %}
+</div>
+{% endblock %}

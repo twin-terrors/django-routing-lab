@@ -1,0 +1,30 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Залы{% endblock %}
+
+{% block content %}
+<h1>Залы филармонии</h1>
+
+<a href="{% url 'main:hall_create' %}" class="btn">Добавить зал</a>
+
+<div class="cards">
+    {% for hall in halls %}
+        <article class="card">
+            <h2>{{ hall.name }}</h2>
+            <p>Количество мест: {{ hall.capacity }}</p>
+            <p>{{ hall.description|truncatewords:25 }}</p>
+
+            <a href="{% url 'main:hall_detail' hall.pk %}"
+               class="btn">Подробнее</a>
+
+            <a href="{% url 'main:hall_update' hall.pk %}"
+               class="btn btn-outline">Изменить</a>
+
+            <a href="{% url 'main:hall_delete' hall.pk %}"
+               class="btn btn-danger">Удалить</a>
+        </article>
+    {% empty %}
+        <p>Залы пока не добавлены.</p>
+    {% endfor %}
+</div>
+{% endblock %}

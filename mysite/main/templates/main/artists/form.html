@@ -1,0 +1,24 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+    {% if object %}Изменить артиста{% else %}Добавить артиста{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <h1>
+        {% if object %}Изменить артиста{% else %}Добавить артиста{% endif %}
+    </h1>
+
+    <form method="post" enctype="multipart/form-data" class="record-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit" class="btn">Сохранить</button>
+
+        <a href="{% url 'main:artist_list' %}" class="btn btn-outline">
+            Отмена
+        </a>
+    </form>
+</div>
+{% endblock %}

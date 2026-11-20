@@ -136,3 +136,123 @@ footer {
     text-align: center;
     padding: 20px;
 }
+
+.record-photo {
+    display: block;
+    width: 100%;
+    max-width: 480px;
+    max-height: 420px;
+    object-fit: contain;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+.record-form p {
+    margin-bottom: 18px;
+}
+
+.record-form label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.record-form input,
+.record-form select,
+.record-form textarea {
+    width: 100%;
+    max-width: 600px;
+    padding: 10px;
+    border: 1px solid #bcc6ce;
+    border-radius: 6px;
+    font: inherit;
+}
+
+.record-form input[type="checkbox"] {
+    width: auto;
+}
+
+button.btn {
+    border: none;
+    cursor: pointer;
+    font: inherit;
+}
+
+.btn-danger {
+    background: #b3261e;
+    color: #fff;
+}
+
+.error-message,
+.errorlist {
+    color: #b3261e;
+    margin-bottom: 15px;
+}
+
+nav {
+    min-height: 70px;
+    height: auto;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 15px 0;
+}
+
+.nav-links {
+    flex-wrap: wrap;
+    row-gap: 20px;
+}
+
+.record-form {
+    max-width: 640px;
+}
+
+.record-form p {
+    margin-bottom: 20px;
+}
+
+.record-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.record-form input,
+.record-form select,
+.record-form textarea {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    border: 1px solid #bcc6ce;
+    border-radius: 6px;
+    background: #fff;
+    color: #333;
+    font: inherit;
+}
+
+.record-form textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.record-form input[type="file"] {
+    padding: 10px;
+}
+
+.record-form input[type="checkbox"] {
+    display: inline-block;
+    width: auto;
+}
+
+.record-form input:focus,
+.record-form select:focus,
+.record-form textarea:focus {
+    outline: 2px solid #0f7c6e;
+    outline-offset: 2px;
+}
+
+.record-form button.btn {
+    border: none;
+    font: inherit;
+    cursor: pointer;
+}

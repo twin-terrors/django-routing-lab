@@ -1,0 +1,29 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Удалить зал{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <h1>Удалить зал</h1>
+
+    {% if delete_error %}
+        <p class="error-message">{{ delete_error }}</p>
+    {% endif %}
+
+    <p>Удалить зал «{{ object.name }}»?</p>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <button type="submit" class="btn btn-danger">
+            Подтвердить удаление
+        </button>
+
+        <a href="{% url 'main:hall_detail' object.pk %}"
+           class="btn btn-outline">Отмена</a>
+
+        <a href="{% url 'main:hall_list' %}"
+           class="btn btn-outline">Вернуться к залам</a>
+    </form>
+</div>
+{% endblock %}

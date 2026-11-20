@@ -1,0 +1,47 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Афиша{% endblock %}
+
+{% block content %}
+<h1>Афиша концертов</h1>
+
+<a href="{% url 'main:concert_create' %}" class="btn">
+    Добавить концерт
+</a>
+
+<div class="cards">
+    {% for concert in concerts %}
+        <article class="card">
+            {% if concert.poster %}
+                <img
+                    src="{{ concert.poster.url }}"
+                    alt="Афиша: {{ concert.name }}"
+                    class="record-photo"
+                >
+            {% endif %}
+
+            <h2>{{ concert.name }}</h2>
+            <p>{{ concert.date|date:"d.m.Y H:i" }}</p>
+            <p>Зал: {{ concert.hall }}</p>
+            <p>Стоимость: {{ concert.price }} ₽</p>
+
+            <a
+                href="{% url 'main:concert_detail' concert.pk %}"
+                class="btn"
+            >Подробнее</a>
+
+            <a
+                href="{% url 'main:concert_update' concert.pk %}"
+                class="btn btn-outline"
+            >Изменить</a>
+
+            <a
+                href="{% url 'main:concert_delete' concert.pk %}"
+                class="btn btn-danger"
+            >Удалить</a>
+        </article>
+    {% empty %}
+        <p>Концертов пока нет. Добавьте первый концерт.</p>
+    {% endfor %}
+</div>
+{% endblock %}

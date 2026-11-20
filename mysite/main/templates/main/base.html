@@ -4,35 +4,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>{% block title %}Филармония{% endblock %} | Городская филармония</title>
+
     <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
 </head>
 <body>
     <header>
         <nav>
-            <a href="{% url 'main:home' %}" class="logo">Городская филармония</a>
-            <ul class="nav-links">
-                <li>
-                    <a href="{% url 'main:home' %}"
-                       class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">Главная</a>
-                </li>
-                <li class="dropdown">
-                    <a href="{% url 'main:about' %}"
-                       class="{% if request.resolver_match.url_name in 'about,contacts,location' %}active{% endif %}">О филармонии ▾</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{% url 'main:contacts' %}">Контакты</a></li>
-                        <li><a href="{% url 'main:location' %}">Как нас найти</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="{% url 'main:afisha' %}"
-                       class="{% if request.resolver_match.url_name == 'afisha' %}active{% endif %}">Афиша</a>
-                </li>
-                <li>
-                    <a href="{% url 'main:collectives' %}"
-                       class="{% if request.resolver_match.url_name == 'collectives' %}active{% endif %}">Коллективы</a>
-                </li>
-            </ul>
+            <a href="{% url 'main:home' %}" class="logo">
+                Городская филармония
+            </a>
+
+            {% with current=request.resolver_match.url_name %}
+                <ul class="nav-links">
+                    <li>
+                        <a href="{% url 'main:home' %}"
+                           class="{% if current == 'home' %}active{% endif %}">
+                            Главная
+                        </a>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="{% url 'main:about' %}"
+                           class="{% if current == 'about' or current == 'contacts' or current == 'location' %}active{% endif %}">
+                            О филармонии ▾
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="{% url 'main:contacts' %}">
+                                    Контакты
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'main:location' %}">
+                                    Как нас найти
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'main:concert_list' %}"
+                           class="{% if current == 'concert_list' or current == 'concert_detail' or current == 'concert_create' or current == 'concert_update' or current == 'concert_delete' %}active{% endif %}">
+                            Афиша
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'main:collective_list' %}"
+                           class="{% if current == 'collective_list' or current == 'collective_detail' or current == 'collective_create' or current == 'collective_update' or current == 'collective_delete' %}active{% endif %}">
+                            Коллективы
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'main:artist_list' %}"
+                           class="{% if current == 'artist_list' or current == 'artist_detail' or current == 'artist_create' or current == 'artist_update' or current == 'artist_delete' %}active{% endif %}">
+                            Артисты
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'main:hall_list' %}"
+                           class="{% if current == 'hall_list' or current == 'hall_detail' or current == 'hall_create' or current == 'hall_update' or current == 'hall_delete' %}active{% endif %}">
+                            Залы
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'main:work_list' %}"
+                           class="{% if current == 'work_list' or current == 'work_detail' or current == 'work_create' or current == 'work_update' or current == 'work_delete' %}active{% endif %}">
+                            Произведения
+                        </a>
+                    </li>
+                </ul>
+            {% endwith %}
         </nav>
     </header>
 

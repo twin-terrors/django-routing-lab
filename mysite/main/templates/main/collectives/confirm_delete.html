@@ -1,0 +1,32 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Удалить коллектив{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <h1>Удалить коллектив</h1>
+
+    {% if delete_error %}
+        <p class="error-message">{{ delete_error }}</p>
+    {% endif %}
+
+    <p>Удалить коллектив «{{ object.name }}»?</p>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <button type="submit" class="btn btn-danger">
+            Подтвердить удаление
+        </button>
+
+        <a
+            href="{% url 'main:collective_detail' object.pk %}"
+            class="btn btn-outline"
+        >Отмена</a>
+
+        <a href="{% url 'main:collective_list' %}" class="btn btn-outline">
+            Вернуться к коллективам
+        </a>
+    </form>
+</div>
+{% endblock %}

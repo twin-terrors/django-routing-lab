@@ -1,0 +1,32 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Удалить артиста{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <h1>Удалить артиста</h1>
+
+    {% if delete_error %}
+        <p class="error-message">{{ delete_error }}</p>
+    {% endif %}
+
+    <p>Удалить артиста «{{ object.name }}»?</p>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <button type="submit" class="btn btn-danger">
+            Подтвердить удаление
+        </button>
+
+        <a
+            href="{% url 'main:artist_detail' object.pk %}"
+            class="btn btn-outline"
+        >Отмена</a>
+
+        <a href="{% url 'main:artist_list' %}" class="btn btn-outline">
+            Вернуться к артистам
+        </a>
+    </form>
+</div>
+{% endblock %}

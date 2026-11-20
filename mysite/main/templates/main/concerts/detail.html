@@ -1,0 +1,51 @@
+{% extends 'main/base.html' %}
+
+{% block title %}{{ concert.name }}{% endblock %}
+
+{% block content %}
+<article class="hero">
+    <h1>{{ concert.name }}</h1>
+
+    {% if concert.poster %}
+        <img
+            src="{{ concert.poster.url }}"
+            alt="Афиша: {{ concert.name }}"
+            class="record-photo"
+        >
+    {% endif %}
+
+    {{ concert.description|linebreaks }}
+
+    <p><strong>Дата:</strong> {{ concert.date|date:"d.m.Y H:i" }}</p>
+    <p><strong>Стоимость:</strong> {{ concert.price }} ₽</p>
+    <p><strong>Жанр:</strong> {{ concert.genre }}</p>
+
+    <p>
+        <strong>Зал:</strong>
+        <a href="{% url 'main:hall_detail' concert.hall.pk %}">
+            {{ concert.hall }}
+        </a>
+    </p>
+
+    <p>
+        <strong>Коллектив:</strong>
+        <a href="{% url 'main:collective_detail' concert.collective.pk %}">
+            {{ concert.collective }}
+        </a>
+    </p>
+
+    <a href="{% url 'main:concert_list' %}" class="btn btn-outline">
+        Вернуться к афише
+    </a>
+
+    <a
+        href="{% url 'main:concert_update' concert.pk %}"
+        class="btn"
+    >Изменить</a>
+
+    <a
+        href="{% url 'main:concert_delete' concert.pk %}"
+        class="btn btn-danger"
+    >Удалить</a>
+</article>
+{% endblock %}
